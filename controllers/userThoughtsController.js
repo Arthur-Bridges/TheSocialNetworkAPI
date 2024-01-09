@@ -38,7 +38,10 @@ export const manipulateUserThought = {
   async createThought(req, res) {
     try {
       const { throughText, username } = req.body;
-      const newThought = await UserThoughts.create({ thoughtText: throughText, username });
+      const newThought = await UserThoughts.create({
+        thoughtText: throughText,
+        username,
+      });
       const users = await User.findOneAndUpdate(
         { _id: req.body.userId },
         { $push: { userThoughts: newThought._id } },
@@ -59,9 +62,10 @@ export const manipulateUserThought = {
   //updating thoughts
   async updateThought(req, res) {
     try {
+      const { throughText } = req.body;
       const thoughts = await UserThoughts.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $set: req.body },
+        { $set: { thoughtText: throughText } },
         { runValidators: true, new: true }
       );
       if (thoughts) {
@@ -81,14 +85,11 @@ export const manipulateUserThought = {
   //deleting thoughts
   async deleteThought(req, res) {
     try {
+      const { throughText } = req.body;
       const thoughts = await UserThoughts.findOneAndDelete({
         _id: req.params.thoughtId,
       });
-      if (thoughts) {
-        res
-          .status(200)
-          .json({ message: "Successfully retrieved!", data: thoughts });
-      } else {
+      if (!thoughts) {
         res.status(404).json({ message: "No THOUGHT with specified ID!" });
       }
 
