@@ -19,7 +19,7 @@ export const manipulateUserThought = {
   async getSingleThought(req, res) {
     try {
       const thoughts = await UserThoughts.findOne({
-        _id: req.params.UserThoughtsId,
+        _id: req.params.thoughtId,
       }).select("-__v");
       if (thoughts) {
         res.json(thoughts);
@@ -38,7 +38,7 @@ export const manipulateUserThought = {
     try {
       const newThought = await UserThoughts.create(req.body);
       const users = await User.findOneAndUpdate(
-        { _id: req.params.userid },
+        { _id: req.body.userId },
         { $push: { userThoughts: newThought._id } },
         { new: true }
       );
@@ -58,7 +58,7 @@ export const manipulateUserThought = {
   async updateThought(req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
-        { _id: req.params.UserThoughtsId },
+        { _id: req.params.thoughtId },
         { $set: req.body },
         { runValidators: true, new: true }
       );
@@ -79,7 +79,7 @@ export const manipulateUserThought = {
   async deleteThought(req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndDelete({
-        _id: req.params.UserThoughtsId,
+        _id: req.params.thoughtId,
       });
       if (thoughts) {
         res.status(200).json({ message: "Successfully retrieved!" });
@@ -106,7 +106,7 @@ export const manipulateUserThought = {
   async createReaction(req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
-        { _id: req.params.UserThoughtsId },
+        { _id: req.params.thoughtId },
         { $addToSet: { reactions: req.body } },
         { runValidators: true, new: true }
       );
@@ -125,7 +125,7 @@ export const manipulateUserThought = {
   async deleteReaction(req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
-        { _id: req.params.UserThoughtsId },
+        { _id: req.params.thoughtId },
         { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
