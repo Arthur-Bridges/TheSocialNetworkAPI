@@ -1,6 +1,5 @@
 import express from "express";
-import mongoose from "mongoose";
-import connectDb from "./config/connection.js";
+import { db } from "./config/connection.js"; // Import the connection object
 import routes from "./routes/index.js";
 
 const app = express();
@@ -10,14 +9,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
-connectDb()
-  .then(() => {
-    mongoose.connection.once("open", () => {
-      app.listen(PORT, () => {
-        console.log(`SERVER running on port ${PORT}`);
-      });
-    });
-  })
-  .catch((err) => {
-    console.error("Database connection failed", err);
+// Listening for the 'open' event on the connection
+db.once("open", () => {
+  app.listen(PORT, () => {
+    console.log(`SERVER running on port ${PORT}`);
   });
+});
+
+// handle connection errors if needed
+db.on("error", (err) => {
+  console.error("Database connection error:", err);
+});
