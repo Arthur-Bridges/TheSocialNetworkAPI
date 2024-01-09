@@ -1,6 +1,6 @@
 import { User, UserThoughts } from "../models/index.js";
 
-const manipulateUserThought = {
+export const manipulateUserThought = {
   //Retrieve thoughts
   async getThought(req, res) {
     try {
@@ -102,7 +102,7 @@ const manipulateUserThought = {
     }
   },
   //Create reaction
-  async createReaction(req, res) {
+  async createReaction (req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
         { _id: req.params.UserThoughtsId },
@@ -121,7 +121,7 @@ const manipulateUserThought = {
     }
   },
   //Delete reaction
-  async deleteReaction(req, res) {
+  async deleteReaction (req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
         { _id: req.params.UserThoughtsId },
@@ -141,4 +141,4 @@ const manipulateUserThought = {
   },
 };
 
-export default manipulateUserThought;
+// export default manipulateUserThought;

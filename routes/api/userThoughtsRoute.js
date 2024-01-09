@@ -1,14 +1,6 @@
 import express from "express";
 //importing all methods from userThooughtsController.js
-import {
-  getThought,
-  getSingleThought,
-  createThought,
-  updateThought,
-  deleteThought,
-  createReaction,
-  deleteReaction,
-} from "../../controllers/userThoughtsController.js";
+import { manipulateUserThought } from "../../controllers/userThoughtsController.js";
 
 const router = express.Router();
 
