@@ -99,7 +99,9 @@ export const manipulateUserThought = {
         { new: true }
       );
       if (users) {
-        res.status(200).json({ message: "Successfully deleted!" });
+        res
+          .status(200)
+          .json({ message: "Successfully deleted!", data: thoughts });
       } else {
         res.status(404).json({ message: "THOUGHT deleted! USER NOT FOUND !" });
       }
