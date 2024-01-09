@@ -1,5 +1,6 @@
-const express = require("express");
-const { MongoClient } = require("mongodb");
+import express from "express";
+import { MongoClient } from "mongodb";
+import routes from "./routes";
 
 const app = express();
 const port = 3001;
@@ -10,7 +11,10 @@ const client = new MongoClient(connectionStringURI);
 
 let db;
 
-const dbName = "inventoryDB";
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const dbName = "TheSocialNetworkDB";
 
 client
   .connect()
@@ -25,36 +29,3 @@ client
   .catch((err) => {
     console.error("Mongo connection error: ", err.message);
   });
-
-app.use(express.json());
-
-app.post("/create", (req, res) => {
-  db.collection("bookCollection")
-    .insertOne({ title: req.body.title, author: req.body.author })
-    .then((results) => res.json(results))
-    .catch((err) => {
-      if (err) throw err;
-    });
-});
-
-app.post("/create-many", (req, res) => {
-  db.collection("bookCollection")
-    .insertMany([
-      { title: "Oh the Places We Will Go!" },
-      { title: "Diary of Anne Frank" },
-    ])
-    .then((results) => res.json(results))
-    .catch((err) => {
-      if (err) throw err;
-    });
-});
-
-app.get("/read", (req, res) => {
-  db.collection("bookCollection")
-    .find({})
-    .toArray()
-    .then((results) => res.json(results))
-    .catch((err) => {
-      if (err) throw err;
-    });
-});
