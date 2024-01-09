@@ -12,6 +12,7 @@ export const manipulateUserThought = {
         res.status(500).json({ message: "Failed to retrieve thoughts!" });
       }
     } catch (err) {
+      console.error(err);
       res.status(500).json({ message: "Oops issue on our end!" });
     }
   },
@@ -29,14 +30,15 @@ export const manipulateUserThought = {
           .json({ message: "No THOUGHT found with the specified ID!" });
       }
     } catch (err) {
+      console.error(err);
       res.status(500).json({ message: "Oops issue on our end!" });
-      res.json(err);
     }
   },
   //creating thought
   async createThought(req, res) {
     try {
-      const newThought = await UserThoughts.create(req.body);
+      const { throughText, username } = req.body;
+      const newThought = await UserThoughts.create({ thoughtText: throughText, username });
       const users = await User.findOneAndUpdate(
         { _id: req.body.userId },
         { $push: { userThoughts: newThought._id } },
@@ -50,8 +52,8 @@ export const manipulateUserThought = {
           .json({ message: "No USER found with the specified ID!" });
       }
     } catch (err) {
+      console.error(err);
       res.status(500).json({ message: "Oops issue on our end!" });
-      res.json(err);
     }
   },
   //updating thoughts
@@ -63,16 +65,17 @@ export const manipulateUserThought = {
         { runValidators: true, new: true }
       );
       if (thoughts) {
-        res.status(200).json({ message: "Successfully updated!" });
-        res.json(thoughts);
+        res
+          .status(200)
+          .json({ message: "Successfully updated!", data: thoughts });
       } else {
         res
           .status(404)
           .json({ message: "No USER found with the specified ID!" });
       }
     } catch (err) {
+      console.error(err);
       res.status(500).json({ message: "Oops issue on our end!" });
-      res.json(err);
     }
   },
   //deleting thoughts
@@ -82,7 +85,9 @@ export const manipulateUserThought = {
         _id: req.params.thoughtId,
       });
       if (thoughts) {
-        res.status(200).json({ message: "Successfully retrieved!" });
+        res
+          .status(200)
+          .json({ message: "Successfully retrieved!", data: thoughts });
       } else {
         res.status(404).json({ message: "No THOUGHT with specified ID!" });
       }
@@ -98,8 +103,8 @@ export const manipulateUserThought = {
         res.status(404).json({ message: "THOUGHT deleted! USER NOT FOUND !" });
       }
     } catch (err) {
+      console.error(err);
       res.status(500).json({ message: "Oops issue on our end!" });
-      res.json(err);
     }
   },
   //Create reaction
@@ -111,14 +116,15 @@ export const manipulateUserThought = {
         { runValidators: true, new: true }
       );
       if (thoughts) {
-        res.status(200).json({ message: "Successfully created reaction!" });
-        res.json(thoughts);
+        res
+          .status(200)
+          .json({ message: "Successfully created reaction!", data: thoughts });
       } else {
         res.status(404).json({ message: "THOUGHT not found with this ID" });
       }
     } catch (err) {
+      console.error(err);
       res.status(500).json({ message: "Oops issue on our end!" });
-      res.json(err);
     }
   },
   //Delete reaction
@@ -130,14 +136,15 @@ export const manipulateUserThought = {
         { runValidators: true, new: true }
       );
       if (thoughts) {
-        res.status(200).json({ message: "Successfully deleted reaction!" });
-        res.json(thoughts);
+        res
+          .status(200)
+          .json({ message: "Successfully deleted reaction!", data: thoughts });
       } else {
         res.status(404).json({ message: "THOUGHT not found with this ID" });
       }
     } catch (err) {
+      console.error(err);
       res.status(500).json({ message: "Oops issue on our end!" });
-      res.json(err);
     }
   },
 };
