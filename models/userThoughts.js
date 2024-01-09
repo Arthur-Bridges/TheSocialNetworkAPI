@@ -1,5 +1,6 @@
 import { model, Types, Schema } from "mongoose";
 import moment from "moment";
+// import { Reactions } from "./reaction.js";
 
 const thoughtSchema = new Schema(
   {
@@ -7,7 +8,12 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: [reactionSchema],
+    reactions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Reactions",
+      },
+    ],
     thoughtText: {
       type: String,
       required: true,
