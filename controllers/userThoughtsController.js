@@ -1,7 +1,7 @@
-//TODO:
 import { User, UserThoughts, Reactions } from "../models";
 
 const manipulateUserThought = {
+  //Retrieve thoughts
   async getThought(req, res) {
     try {
       const thoughts = await UserThoughts.find({});
@@ -14,6 +14,7 @@ const manipulateUserThought = {
       res.status(500).json({ message: "Oops issue on our end!" });
     }
   },
+  //Retrieve single thoughts
   async getSingleThought(res, res) {
     try {
       const thoughts = await UserThoughts.findOne({
@@ -31,6 +32,7 @@ const manipulateUserThought = {
       res.json(err);
     }
   },
+  //creating thought
   async createThought(res, res) {
     try {
       const newThought = await UserThoughts.create(req.body);
@@ -51,6 +53,7 @@ const manipulateUserThought = {
       res.json(err);
     }
   },
+  //updating thoughts
   async updateThought(res, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
@@ -71,6 +74,7 @@ const manipulateUserThought = {
       res.json(err);
     }
   },
+  //deleting thoughts
   async deleteThought(res, res) {
     try {
       const thoughts = await UserThoughts.findOneAndDelete({
@@ -97,6 +101,7 @@ const manipulateUserThought = {
       res.json(err);
     }
   },
+  //Create reaction
   async createReaction(res, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
@@ -115,6 +120,7 @@ const manipulateUserThought = {
       res.json(err);
     }
   },
+  //Delete reaction
   async deleteReaction(res, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
