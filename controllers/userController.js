@@ -14,10 +14,9 @@ export const manipulateUserData = {
   // Retrieve single instance of User Data
   async getSingleUser(req, res) {
     try {
-      const users = await User.findOne({ _id: req.params.userId })
-        .populate("thoughts")
-        .populate("friends")
-        .select("-__v");
+      const users = await User.findOne({ _id: req.params.userId }).select(
+        "-__v"
+      );
       if (users) {
         res.json(users);
       } else {
