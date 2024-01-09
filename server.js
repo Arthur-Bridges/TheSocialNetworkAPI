@@ -4,7 +4,7 @@ import db from "./config/connection.js";
 import routes from "./routes";
 
 const app = express();
-const port = 3001;
+const PORT = 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
