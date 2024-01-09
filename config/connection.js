@@ -1,5 +1,7 @@
-import { connect } from "mongoose";
-//TODO: set the connection => database
-const connectDB = await connect("mongodb://127.0.0.1:27017/TheSocialNetworkAPI");
+import mongoose from "mongoose";
 
-export default connectDB;
+const connectDb = () => {
+  return mongoose.connect("mongodb://127.0.0.1:27017/TheSocialNetworkAPI");
+};
+
+export default connectDb;
