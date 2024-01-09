@@ -1,14 +1,6 @@
 import express from "express";
 //importing all methods from userController.js
-import {
-  getUser,
-  getSingleUser,
-  createUser,
-  updateUser,
-  deleteUser,
-  addFriend,
-  deleteFriend,
-} from "../../controllers/userController";
+import { manipulateUserData } from "../../controllers/userController.js";
 
 const router = express.Router();
 

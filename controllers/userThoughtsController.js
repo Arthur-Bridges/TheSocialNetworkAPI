@@ -1,4 +1,4 @@
-import { User, UserThoughts, Reactions } from "../models";
+import { User, UserThoughts } from "../models/index.js";
 
 const manipulateUserThought = {
   //Retrieve thoughts
@@ -15,7 +15,7 @@ const manipulateUserThought = {
     }
   },
   //Retrieve single thoughts
-  async getSingleThought(res, res) {
+  async getSingleThought(req, res) {
     try {
       const thoughts = await UserThoughts.findOne({
         _id: req.params.UserThoughtsId,
@@ -33,7 +33,7 @@ const manipulateUserThought = {
     }
   },
   //creating thought
-  async createThought(res, res) {
+  async createThought(req, res) {
     try {
       const newThought = await UserThoughts.create(req.body);
       const users = await User.findOneAndUpdate(
@@ -54,7 +54,7 @@ const manipulateUserThought = {
     }
   },
   //updating thoughts
-  async updateThought(res, res) {
+  async updateThought(req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
         { _id: req.params.UserThoughtsId },
@@ -75,7 +75,7 @@ const manipulateUserThought = {
     }
   },
   //deleting thoughts
-  async deleteThought(res, res) {
+  async deleteThought(req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndDelete({
         _id: req.params.UserThoughtsId,
@@ -102,7 +102,7 @@ const manipulateUserThought = {
     }
   },
   //Create reaction
-  async createReaction(res, res) {
+  async createReaction(req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
         { _id: req.params.UserThoughtsId },
@@ -121,7 +121,7 @@ const manipulateUserThought = {
     }
   },
   //Delete reaction
-  async deleteReaction(res, res) {
+  async deleteReaction(req, res) {
     try {
       const thoughts = await UserThoughts.findOneAndUpdate(
         { _id: req.params.UserThoughtsId },

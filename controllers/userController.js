@@ -1,7 +1,7 @@
-import { User, UserThoughts, Reactions } from "../models";
+import { User } from "../models/User.js";
 //404 user input error
 //500 something went wrong on MY/SERVER end
-const manipulateUserData = {
+export const manipulateUserData = {
   // Retrieve User Data
   async getUsers(req, res) {
     try {
@@ -122,5 +122,3 @@ const manipulateUserData = {
     }
   },
 };
-
-export default manipulateUserData;

@@ -1,4 +1,4 @@
-import { connect, connection } from "mongoose";
+import { connect } from "mongoose";
 //TODO: set the connection => database
 const connectDB = await connect("mongodb://127.0.0.1:27017/TheSocialNetworkAPI");
 

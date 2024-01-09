@@ -1,5 +1,5 @@
-import User from "./User";
-import Reactions from "./reaction";
-import UserThoughts from "./userThoughts";
+import User from "./User.js";
+import Reactions from "./reaction.js";
+import UserThoughts from "./userThoughts.js";
 
-export default { User, Reactions, UserThoughts };
+export { User, Reactions, UserThoughts };
