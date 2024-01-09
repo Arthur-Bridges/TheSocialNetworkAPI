@@ -2,6 +2,7 @@ import { User, UserThoughts, Reactions } from "../models";
 //404 user input error
 //500 something went wrong on MY/SERVER end
 const manipulateUserData = {
+  // Retrieve User Data
   async getUsers(req, res) {
     try {
       const users = await User.find({});
@@ -10,7 +11,7 @@ const manipulateUserData = {
       res.status(500).json(err);
     }
   },
-
+  // Retrieve single instance of User Data
   async getSingleUser(req, res) {
     try {
       const users = await User.findOne({ _id: req.params.userId })
@@ -28,7 +29,7 @@ const manipulateUserData = {
       res.status(500).json(err);
     }
   },
-
+  // Create User Data
   async createUser(req, res) {
     try {
       const users = await User.create(req.body);
@@ -38,7 +39,7 @@ const manipulateUserData = {
       console.log(err);
     }
   },
-
+  // Update User Data
   async updateUser(req, res) {
     try {
       const users = await User.findOneAndUpdate(
@@ -58,7 +59,7 @@ const manipulateUserData = {
       res.status(500).json(err);
     }
   },
-
+  // Deleting User Data
   async deleteUser(req, res) {
     try {
       const users = await User.findOneAndDelete({ _id: req.params.userId });
@@ -76,7 +77,7 @@ const manipulateUserData = {
       res.status(500).json(err);
     }
   },
-
+  // Adding friend
   async addFriend(req, res) {
     try {
       const users = await User.findOneAndUpdate(
@@ -98,7 +99,7 @@ const manipulateUserData = {
       });
     }
   },
-
+  // Deleting Friend
   async deleteFriend(req, res) {
     try {
       const users = await User.findOneAndUpdate(
