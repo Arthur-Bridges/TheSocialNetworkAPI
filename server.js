@@ -1,7 +1,7 @@
 import express from "express";
 // import { MongoClient } from "mongodb";
 import db from "./config/connection.js";
-import routes from "./routes";
+import routes from "./routes/index.js";
 
 const app = express();
 const PORT = 3001;
