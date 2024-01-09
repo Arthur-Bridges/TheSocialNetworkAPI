@@ -14,12 +14,42 @@ const manipulateUserThought = {
       res.status(500).json({ message: "Oops issue on our end!" });
     }
   },
-  async getSingleThought(res, res) {},
-  async createThought(res, res) {},
-  async updateThought(res, res) {},
-  async deleteThought(res, res) {},
-  async createReaction(res, res) {},
-  async deleteReaction(res, res) {},
+  async getSingleThought(res, res) {
+    try {
+    } catch (err) {
+      res.status(500).json({ message: "Oops issue on our end!" });
+    }
+  },
+  async createThought(res, res) {
+    try {
+    } catch (err) {
+      res.status(500).json({ message: "Oops issue on our end!" });
+    }
+  },
+  async updateThought(res, res) {
+    try {
+    } catch (err) {
+      res.status(500).json({ message: "Oops issue on our end!" });
+    }
+  },
+  async deleteThought(res, res) {
+    try {
+    } catch (err) {
+      res.status(500).json({ message: "Oops issue on our end!" });
+    }
+  },
+  async createReaction(res, res) {
+    try {
+    } catch (err) {
+      res.status(500).json({ message: "Oops issue on our end!" });
+    }
+  },
+  async deleteReaction(res, res) {
+    try {
+    } catch (err) {
+      res.status(500).json({ message: "Oops issue on our end!" });
+    }
+  },
 };
 
 export default manipulateUserThought;
