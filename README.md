@@ -68,6 +68,10 @@ N/A
 
 Video of deployed App: 
 
+https://github.com/Arthur-Bridges/TheSocialNetworkAPI/assets/78990603/d5b54c44-770a-400c-9042-da2c6449cab2
+
+
+
 Site:
 
 ## Badges
