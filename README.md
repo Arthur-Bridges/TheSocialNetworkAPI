@@ -1,7 +1,5 @@
 # TheSocialNetwork
 
-Hello, my name is Arthur. I'm an aspiring CS student at UTSA and to deepen my understanding I will like to provide a tutorial on RegEX.
-
 ## Table of Contents
 
 - [Description](#description)
@@ -15,7 +13,7 @@ Hello, my name is Arthur. I'm an aspiring CS student at UTSA and to deepen my un
 
 ## Description
 
-Hello, my name is Arthur, and I would like to present you a blogpost that allows you to interact with other user's with shared interest about tech.
+Hello, my name is Arthur, and I would like to present you a backend for a social network which allows you to manipulate user info and interact with other users.
 
 ## Installation
 
@@ -25,24 +23,42 @@ N/A
 
 Usage for this web application is very simple.
 
-1. **:**
+1. **Users**
 
--Create a post.
+-Create a user.
 
--Update an existing post.
+-Retrieve all users.
 
--Delete an existing post.
+-Retrieve user by ID.
 
-2. **:**
+-Update an existing user.
 
--Create a login.
+-Delete an existing user.
+
+2. **Thoughts**
+
+-Create a thought.
+
+-Retrieve all thoughts.
+
+-Retrieve thought by ID.
+
+-Update an existing thought.
+
+-Delete an existing thought.
+
+3. **Reactions**
+
+-Create a reaction.
+
+-Delete an existing reaction.
 
 ## Credits
 
 Created by:  
 Arthur Bridges (https://github.com/Arthur-Bridges),
 
-Created with the use of Javascript, Node, MySQL, Express.js, & Sequelize.
+Created with the use of Javascript, Node, Mongoose, Express.js.
 
 ## License
 
