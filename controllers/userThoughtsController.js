@@ -1,5 +1,6 @@
 import { User } from "../models/User.js";
 import { UserThoughts } from "../models/userThoughts.js";
+import { Reactions } from "../models/reaction.js";
 
 export const manipulateUserThought = {
   //Retrieve thoughts
@@ -113,9 +114,18 @@ export const manipulateUserThought = {
   //Create reaction
   async createReaction(req, res) {
     try {
+      const newReaction = await Reactions.create({
+        username: req.body.username,
+        reactionBody: req.body.reactionBody,
+      });
+
       const thoughts = await UserThoughts.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $addToSet: { reactions: req.body } },
+        {
+          $addToSet: {
+            reactions: newReaction._id,
+          },
+        },
         { runValidators: true, new: true }
       );
       if (thoughts) {
